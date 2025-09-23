@@ -1,5 +1,7 @@
 # Fractal Mathematics in Trading Systems
 
+<img width="1248" height="793" alt="image" src="https://github.com/user-attachments/assets/514200f3-a946-4c72-adf7-346d8adae28d" />
+
 ## Overview
 This repository contains the FMTS application, an advanced market simulation software that explores fractal mathematics in trading systems. The application features sophisticated pattern recognition, predictive analytics, and real-time market behavior analysis. Available for both Mac and Windows platforms.
 
