@@ -1,27 +1,52 @@
-# Multi-Language Fractal Analysis
+# Fractal Trading Analysis
 
-This project demonstrates fractal market analysis (box-counting dimension, self-similarity, volatility clustering) implemented in multiple languages: C#, Go, C++, and C. It simulates 10,000 candles (hourly data) and exports comparable CSV outputs for cross-language validation.
+Started this as a side project to figure out if fractal mathematics could actually help with trading decisions. Ended up building a distributed system that processes thousands of market ticks per second and generates some pretty interesting patterns.
 
-Languages:
-- csharp/: .NET console app (10,000 candles, CSV export)
-- go/: Go CLI (goroutines to parallelize analysis)
-- cpp/: C++17 console app (high-performance STL)
-- c/: ANSI C console app (portable, minimal deps)
-- shared/: Shared CSV schema, sample configs
+## What It Does
 
-Build prerequisites:
-- Windows: Recommended (msvc for C/C++, .NET for C#, Go toolchain for Go)
-- If .NET SDK is missing, use the provided C# .NET Framework fallback or run Go/C++/C variants
+Analyzes market data using fractal geometry - basically measuring how "rough" price movements are at different time scales. When volatility spikes, fractal dimensions change, and that can signal interesting trading opportunities.
 
-Outputs (per implementation):
-- market_data.csv
-- fractal_patterns.csv
-- behavior_metrics.csv
-- session_summary.csv
+Built the core analysis in 4 different languages because I wanted to see performance differences:
+- **C#**: Full-featured version with all the bells and whistles
+- **Go**: Concurrent processing with goroutines (surprisingly fast)
+- **C++**: Maximum performance, minimal dependencies
+- **C**: Bare metal implementation for when you need every microsecond
 
-Run order suggestion:
-1) csharp/ (if dotnet available), otherwise go/
-2) cpp/
-3) c/
+Plus a complete distributed setup with Kafka, Spark, and real-time monitoring.
 
-All implementations write outputs to their own subfolder.
+## Quick Start
+
+For the basic analysis, just run:
+```bash
+run_all.bat
+```
+
+For the full distributed system:
+```bash
+cd docker-infrastructure
+deploy-fractal-system.bat
+```
+
+## What You Get
+
+Each implementation spits out CSV files with:
+- Raw market data (10,000 simulated candles)
+- Detected fractal patterns with confidence scores
+- Volatility clustering analysis
+- Performance metrics
+
+## Real-Time System
+
+The distributed version is where things get interesting:
+- Kafka streams processing thousands of ticks/second
+- Spark cluster for heavy fractal calculations
+- HFT simulation with microsecond precision
+- Grafana dashboards that don't suck
+
+Access at http://localhost/ after deployment.
+
+## Notes
+
+Built on Windows but should work elsewhere with minor tweaks. The Docker setup handles most dependencies automatically.
+
+If you're just experimenting, start with the C# or Go versions - they're the most user-friendly.

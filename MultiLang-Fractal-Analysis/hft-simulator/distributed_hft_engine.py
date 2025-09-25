@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """
-Distributed High-Frequency Trading Simulation Engine
-Microsecond precision trading with fractal analysis and risk management
+HFT Trading Simulator with Fractal Analysis
 
-Enterprise-grade HFT simulation using Kafka streaming and Spark processing
+This got way more complex than I originally planned. Started as a simple
+order execution simulator and ended up building a full HFT engine with
+real-time pattern recognition and portfolio management.
+
+Warning: This is simulation code - don't use this with real money without
+serious testing and risk management.
 """
 
 import json

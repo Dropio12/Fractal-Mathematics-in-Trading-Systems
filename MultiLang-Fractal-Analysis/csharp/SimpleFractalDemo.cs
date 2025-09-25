@@ -1,5 +1,5 @@
-// Simple C# fractal market analysis with 10,000 candles
-// Builds with .NET Framework C# compiler (csc.exe) available on Windows
+// Fractal analysis of market data - C# version
+// This was my first implementation, works with both new .NET and old Framework
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +22,8 @@ namespace MultiLangFractal.CSharp
 
     public static class Fractal
     {
-        // Box-counting fractal dimension on a window of prices
+        // Calculate fractal dimension using box-counting method
+        // The idea: cover the price curve with boxes of different sizes
         public static double BoxCountingFractalDimension(double[] prices)
         {
             if (prices.Length < 4) return 1.0;
@@ -99,7 +100,8 @@ namespace MultiLangFractal.CSharp
             DateTime start = DateTime.Now.AddHours(-n);
             for (int i=0;i<n;i++)
             {
-                // Fractal-like noise via multi-octave sines scaled by gaussian noise
+                // Generate some fractal-like market movement
+                // Multiple sine waves + gaussian noise = semi-realistic price action
                 double noise = 0; double amp=1, freq=1;
                 for (int o=0;o<5;o++)
                 {

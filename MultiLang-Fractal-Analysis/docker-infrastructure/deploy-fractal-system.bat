@@ -2,14 +2,16 @@
 setlocal EnableDelayedExpansion
 
 REM =============================================================================
-REM Distributed Fractal Analysis Trading System Deployment Script
-REM Enterprise-grade HFT simulation with Kafka, Spark, and real-time monitoring
+REM Fractal Trading System Deployment Script
+REM 
+REM This deploys the full distributed system - Kafka, Spark, monitoring, the works.
+REM It takes a few minutes to start everything up, so grab some coffee.
 REM =============================================================================
 
 echo.
 echo ================================================================================
-echo  DISTRIBUTED FRACTAL ANALYSIS TRADING SYSTEM
-echo  Deploying enterprise-grade HFT simulation infrastructure
+echo  FRACTAL TRADING SYSTEM
+echo  Starting up the full distributed setup - this might take a few minutes
 echo ================================================================================
 echo.
 

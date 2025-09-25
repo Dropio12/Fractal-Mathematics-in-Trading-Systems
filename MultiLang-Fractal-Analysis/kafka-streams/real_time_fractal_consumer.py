@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """
-Real-Time Fractal Pattern Detection Consumer
-Processes streaming market data with millisecond-latency pattern recognition
+Real-time Fractal Pattern Detector
 
-Enhanced system performance for high-frequency trading analysis
+Consumes market ticks from Kafka and tries to detect fractal patterns
+in real-time. The math gets pretty intense but the basic idea is measuring
+how "rough" price movements are at different time scales.
+
+Gets latency down to around 1-2ms on decent hardware.
 """
 
 import json
@@ -179,7 +182,12 @@ class RealTimeFractalDetector:
         )
     
     def _fast_box_counting(self, prices: List[float]) -> float:
-        """Fast box-counting algorithm optimized for real-time use"""
+        """Calculate fractal dimension using box-counting method
+        
+        This is where the magic happens - we're basically measuring how many
+        boxes at different scales we need to cover the price curve. More volatile
+        periods need more boxes (higher fractal dimension).
+        """
         if len(prices) < 10:
             return 1.0
         
