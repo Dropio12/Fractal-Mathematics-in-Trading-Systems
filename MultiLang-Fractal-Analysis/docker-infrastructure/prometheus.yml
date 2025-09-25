@@ -1,0 +1,77 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+  scrape_timeout: 4s
+
+rule_files:
+  - "fractal_rules.yml"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Kafka metrics via JMX
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka:9997']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Pattern Consumer metrics
+  - job_name: 'pattern-consumer'
+    static_configs:
+      - targets: ['pattern-consumer:8001']
+    metrics_path: /metrics
+    scrape_interval: 1s  # High frequency for trading metrics
+
+  # HFT Engine metrics
+  - job_name: 'hft-engine'
+    static_configs:
+      - targets: ['hft-engine:8002']
+    metrics_path: /metrics
+    scrape_interval: 1s  # High frequency for trading metrics
+
+  # Spark Master
+  - job_name: 'spark-master'
+    static_configs:
+      - targets: ['spark-master:8080']
+    metrics_path: /metrics/master/prometheus
+
+  # Spark Workers
+  - job_name: 'spark-workers'
+    static_configs:
+      - targets: 
+          - 'spark-worker-1:8081'
+          - 'spark-worker-2:8081'
+    metrics_path: /metrics/applications/prometheus
+
+  # Redis metrics
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    metrics_path: /metrics
+
+  # System metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 10s
+
+  # InfluxDB metrics
+  - job_name: 'influxdb'
+    static_configs:
+      - targets: ['influxdb:8086']
+    metrics_path: /metrics
+
+  # Nginx metrics
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:80']
+    metrics_path: /metrics
